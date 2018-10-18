@@ -1,0 +1,17 @@
+# tmp files
+*.log
+*.pot
+*.pyc
+*.pye
+__pycache__
+
+
+# DB
+db.sqlite3
+
+# General
+media
+**/migrations/000*.py
+cc-test-reporter
+tests_coverage
+coverage.xml
