@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  web:
+    container_name: 'smart-medicine-cup-backend-web'
+    build: .
+    volumes:
+      - .:/home/smart-medicine-cup-backend
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - migrate
+    ports:
+      - "8000:8000"
+    tty: True
+
+  migrate:
+    container_name: 'smart-medicine-cup-backend-migrate'
+    build: .
+    volumes:
+      - .:/home/smart-medicine-cup-backend
+    command: python manage.py migrate
+    depends_on:
+      - migrations
+    tty: True
+
+  migrations:
+    container_name: 'smart-medicine-cup-backend-migrations'
+    build: .
+    volumes:
+      - .:/home/smart-medicine-cup-backend
+    command: python manage.py makemigrations
+    tty: True
+
+  command:
+    container_name: 'smart-medicine-cup-backend-command'
+    build: .
+    volumes:
+      - .:/home/smart-medicine-cup-backend
+    tty: True
