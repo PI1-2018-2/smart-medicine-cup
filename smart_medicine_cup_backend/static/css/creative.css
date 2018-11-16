@@ -186,7 +186,6 @@ img::-moz-selection {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/header.jpg");
   background-position: center center;
   background-size: cover;
 }
@@ -226,6 +225,61 @@ header.masthead p {
   header.masthead h1 {
     font-size: 4rem;
   }
+}
+
+header.carouselBox hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.carouselBox h1 {
+  font-size: 2rem;
+}
+
+header.carouselBox p {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  header.carouselBox p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 992px) {
+  header.carouselBox h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.carouselBox h1 {
+    font-size: 4rem;
+  }
+}
+
+.carousel-item {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-position: center center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  min-height: 650px;
+}
+
+.carousel-item-1 {
+  background-image: url("../img/slide-1.jpg");
+}
+
+.carousel-item-2 {
+  background-image: url("../img/slide-2.jpg");
+}
+
+.carousel-item-3 {
+  background-image: url("../img/slide-3.jpg");
 }
 
 .service-box {

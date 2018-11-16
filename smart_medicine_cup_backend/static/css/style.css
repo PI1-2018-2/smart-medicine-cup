@@ -1,7 +1,11 @@
-/* Team styles
+/* Header styles
 -------------------------------------------------- */
-header.masthead-team {
-  background-image: url("../img/team.jpg");
+.titleBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
 }
 
 /* Footer styles
@@ -12,6 +16,12 @@ header.masthead-team {
 
 .footer-bar {
   margin-top: 10px;
-  height: 60px; /* Set the fixed height of the footer here */
+  height: 60px; /* Set the fixed height of the footer bar here */
   line-height: 60px; /* Vertically center the text there */
+}
+
+/* Team styles
+-------------------------------------------------- */
+.masthead-team {
+  background-image: url("../img/team.jpg");
 }
