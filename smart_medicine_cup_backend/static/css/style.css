@@ -1,6 +1,11 @@
-/* Sticky footer styles
+/* Team styles
 -------------------------------------------------- */
+header.masthead-team {
+  background-image: url("../img/team.jpg");
+}
 
+/* Footer styles
+-------------------------------------------------- */
 .footer {
   padding-top: 40px;
 }
