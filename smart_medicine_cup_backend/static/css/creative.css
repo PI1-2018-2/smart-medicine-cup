@@ -31,7 +31,7 @@ a {
 }
 
 a:hover {
-  color: #f05f40;
+  color: #21d3d3;
 }
 
 h1,
@@ -45,6 +45,14 @@ h6 {
 
 .bg-primary {
   background-color: #21D3D3 !important;
+}
+
+.bg-secondary {
+  background-color: #009ABB !important;
+}
+
+.bg-secondary-dark {
+  background-color: #007B95 !important;
 }
 
 .bg-dark {
@@ -101,12 +109,12 @@ img::-moz-selection {
 #mainNav .navbar-brand {
   font-weight: 700;
   text-transform: uppercase;
-  color: #21D3D3;
+  color: #009ABB;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-  color: #f05f40;
+  color: #009aba;
 }
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link,
@@ -119,12 +127,12 @@ img::-moz-selection {
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
 #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-  color: #21D3D3;
+  color: #009ABB;
 }
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link.active,
 #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active {
-  color: #21D3D3 !important;
+  color: #009ABB !important;
   background-color: transparent;
 }
 
@@ -160,10 +168,10 @@ img::-moz-selection {
     background-color: #fff;
   }
   #mainNav.navbar-shrink .navbar-brand {
-    color: #21D3D3;
+    color: #009ABB;
   }
   #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-    color: #f05f40;
+    color: #009aba;
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
@@ -171,17 +179,15 @@ img::-moz-selection {
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-    color: #21D3D3;
+    color: #009ABB;
   }
 }
 
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/header.jpg");
   background-position: center center;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 header.masthead hr {
@@ -221,6 +227,61 @@ header.masthead p {
   }
 }
 
+header.carouselBox hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.carouselBox h1 {
+  font-size: 2rem;
+}
+
+header.carouselBox p {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  header.carouselBox p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 992px) {
+  header.carouselBox h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.carouselBox h1 {
+    font-size: 4rem;
+  }
+}
+
+.carousel-item {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-position: center center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  min-height: 650px;
+}
+
+.carousel-item-1 {
+  background-image: url("../img/slide-1.jpg");
+}
+
+.carousel-item-2 {
+  background-image: url("../img/slide-2.jpg");
+}
+
+.carousel-item-3 {
+  background-image: url("../img/slide-3.jpg");
+}
+
 .service-box {
   max-width: 400px;
 }
@@ -241,7 +302,7 @@ header.masthead p {
   text-align: center;
   opacity: 0;
   color: #fff;
-  background: rgba(0, 154, 190, 0.9);
+  background: rgba(33, 211, 211, 0.9);
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
@@ -292,6 +353,10 @@ header.masthead p {
   color: #21D3D3 !important;
 }
 
+.text-secondary {
+  color: #009ABB !important;
+}
+
 .btn {
   font-weight: 700;
   text-transform: uppercase;
@@ -311,10 +376,25 @@ header.masthead p {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   color: #fff;
-  background-color: #009ABB !important;
+  background-color: #1ebdbd !important;
 }
 
 .btn-primary:active, .btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+}
+
+.btn-secondary {
+  background-color: #009ABB;
+  border-color: #009ABB;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+  color: #fff;
+  background-color: #0085a2 !important;
+}
+
+.btn-secondary:active, .btn-secondary:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }

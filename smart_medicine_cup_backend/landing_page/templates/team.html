@@ -1,71 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}Smart Medicine Cup{% endblock %}
+{% block title %}Equipe - Smart Medicine Cup{% endblock %}
 
-{% block hreflogo %}#page-top{% endblock %}
-
-{% block navitem %}
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">SMC</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Galeria</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#team">Equipe</a>
-            </li>
-            <li class="nav-item pt-2">
-              <a class="nav-link p-0"> | </a>
-            </li>
-{% endblock %}
+{% block hreflogo %}/{% endblock %}
 
 {% block content %}
-    <header class="carouselBox text-center text-white">
-      <div class="titleBox">
-        <h1 class="text-uppercase">
-          <strong>SMC - Smart Medicine Cup</strong>
-        </h1>
-        <hr>
-        <p class="text-faded mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a class="btn btn-secondary btn-xl js-scroll-trigger" href="#about">Descubra mais</a>
-      </div>
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item carousel-item-1 active">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
-              <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
+    <header class="masthead masthead-team text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>SMC - Smart Medicine Cup</strong>
+            </h1>
+            <hr>
           </div>
-          <div class="carousel-item carousel-item-2">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
-              <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-          <div class="carousel-item carousel-item-3">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
-              <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <a class="btn btn-secondary btn-xl js-scroll-trigger" href="#about">Descubra mais</a>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </header>
 
@@ -129,8 +82,8 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters popup-gallery">
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="/static/img/portfolio/fullsize/1.jpg">
-              <img class="img-fluid" src="/static/img/portfolio/thumbnails/1.jpg" alt="">
+            <a class="portfolio-box" href="/static/landing_page/img/portfolio/fullsize/1.jpg">
+              <img class="img-fluid" src="/static/landing_page/img/portfolio/thumbnails/1.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -144,8 +97,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="/static/img/portfolio/fullsize/2.jpg">
-              <img class="img-fluid" src="/static/img/portfolio/thumbnails/2.jpg" alt="">
+            <a class="portfolio-box" href="/static/landing_page/img/portfolio/fullsize/2.jpg">
+              <img class="img-fluid" src="/static/landing_page/img/portfolio/thumbnails/2.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -159,8 +112,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="/static/img/portfolio/fullsize/3.jpg">
-              <img class="img-fluid" src="/static/img/portfolio/thumbnails/3.jpg" alt="">
+            <a class="portfolio-box" href="/static/landing_page/img/portfolio/fullsize/3.jpg">
+              <img class="img-fluid" src="/static/landing_page/img/portfolio/thumbnails/3.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -174,8 +127,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="/static/img/portfolio/fullsize/4.jpg">
-              <img class="img-fluid" src="/static/img/portfolio/thumbnails/4.jpg" alt="">
+            <a class="portfolio-box" href="/static/landing_page/img/portfolio/fullsize/4.jpg">
+              <img class="img-fluid" src="/static/landing_page/img/portfolio/thumbnails/4.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -189,8 +142,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="/static/img/portfolio/fullsize/5.jpg">
-              <img class="img-fluid" src="/static/img/portfolio/thumbnails/5.jpg" alt="">
+            <a class="portfolio-box" href="/static/landing_page/img/portfolio/fullsize/5.jpg">
+              <img class="img-fluid" src="/static/landing_page/img/portfolio/thumbnails/5.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -204,8 +157,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="/static/img/portfolio/fullsize/6.jpg">
-              <img class="img-fluid" src="/static/img/portfolio/thumbnails/6.jpg" alt="">
+            <a class="portfolio-box" href="/static/landing_page/img/portfolio/fullsize/6.jpg">
+              <img class="img-fluid" src="/static/landing_page/img/portfolio/thumbnails/6.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -248,10 +201,11 @@
         <div class="row text-center">
             <div class="col-lg-12">
               <br><br>
-              <a class="btn btn-secondary btn-xl js-scroll-trigger" href="/team/">Saiba mais</a>
+              <a class="btn btn-secondary btn-xl js-scroll-trigger" href="#services">Saiba mais</a>
             </div>
           </div>
         </div>
       </div>
     </section>
+
 {% endblock %}
