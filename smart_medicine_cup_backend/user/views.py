@@ -7,4 +7,3 @@ class Login(TemplateView):
 
 class SingUp(TemplateView):
 	template_name = "signup.html"
-    
