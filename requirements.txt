@@ -8,6 +8,8 @@ django_extensions==1.8.1
 django_singleton_model==0.2.3
 djangorestframework-jwt==1.11.0
 djangorestframework==3.8.1
+gunicorn
+django-heroku
 coreapi==2.3.3
 factory-boy==2.9.2
 flake8==3.5.0
