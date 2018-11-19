@@ -15,3 +15,6 @@ media
 cc-test-reporter
 tests_coverage
 coverage.xml
+
+# env file
+.env*

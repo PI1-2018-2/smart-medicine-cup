@@ -4,6 +4,8 @@ services:
   web:
     container_name: 'smart-medicine-cup-backend-web'
     build: .
+    env_file:
+      - ./.env.secret
     volumes:
       - .:/home/smart-medicine-cup-backend
     command: python manage.py runserver 0.0.0.0:8000
