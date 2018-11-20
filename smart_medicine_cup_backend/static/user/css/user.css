@@ -1,0 +1,46 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+
+hr {
+  max-width: 200px;
+  border-width: 3px;
+  border-color: #21D3D3;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.login {
+  padding-top: 20%;
+  padding-bottom: 20%;
+  background-image: url("../img/copo.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+.login-email{
+	padding-top: 10px;
+}
+
+.login-senha{
+	padding-top: 10px;
+}
+
+.login-button{
+	margin-top: 10px;
+}
