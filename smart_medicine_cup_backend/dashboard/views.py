@@ -5,5 +5,11 @@ from django.views.generic import TemplateView
 class Dashboard(TemplateView):
     template_name = "dashboard.html"
 
+class Registration(TemplateView):
+    template_name = "registration.html"
+
 class EditRegistration(TemplateView):
     template_name = "edit_registration.html"
+
+class Login(TemplateView):
+    template_name = "login.html"

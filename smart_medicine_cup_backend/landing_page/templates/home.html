@@ -5,24 +5,22 @@
 {% block hreflogo %}#page-top{% endblock %}
 
 {% block navitem %}
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">SMC</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Galeria</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#team">Equipe</a>
-            </li>
-            <li class="nav-item pt-2">
-              <a class="nav-link p-0"> | </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/login/">Login</a>
-            </li>
+    <li class="nav-item">
+      <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link js-scroll-trigger" href="#services">SMC</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link js-scroll-trigger" href="#portfolio">Galeria</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link js-scroll-trigger" href="#team">Equipe</a>
+    </li>
+    <li class="nav-item pt-2">
+      <a class="nav-link p-0"> | </a>
+    </li>
+    {% include "navlogin.html" %}
 {% endblock %}
 
 {% block content %}

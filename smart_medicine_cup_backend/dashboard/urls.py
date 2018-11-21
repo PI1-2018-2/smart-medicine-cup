@@ -1,7 +1,9 @@
 from django.urls import path
-from dashboard.views import Dashboard, EditRegistration
+from dashboard import views
 
 urlpatterns = [
-    path('', Dashboard.as_view()),
-    path('edit_registration/', EditRegistration.as_view()),
+    path('', views.Dashboard.as_view()),
+    path('registration/', views.Registration.as_view()),
+    path('edit_registration/', views.EditRegistration.as_view()),
+    path('login/', views.Login.as_view()),
 ]
