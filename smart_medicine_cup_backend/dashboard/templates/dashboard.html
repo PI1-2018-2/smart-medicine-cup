@@ -4,3 +4,160 @@
 
 {% block navclass %}bg-secondary{% endblock %}
 {% block navlinkclass %}text-white{% endblock %}
+
+{% block navitem %}
+  <li class="nav-item">
+    <a class="nav-link text-white">Olá, &lt;usuário&gt;</a>
+  </li>
+  <li class="nav-item pt-2">
+    <a class="nav-link p-0 text-white"> | </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white" href="/user/logout/">Sair</a>
+  </li>
+{% endblock %}
+
+{% block content %}
+
+  <section>
+
+    <div class="container">
+
+      <h1 class="text-secondary">Painel SMC</h1>
+      <hr class="dashboardHr">
+      <div class="row">
+        <div class="col-lg-3">
+          <a class="btn btn-blue dashboardBtn" href="/dashboard/historic/" role="button">Histórico</a>
+        </div>
+        <div class="col-lg-3">
+          <a class="btn btn-warning dashboardBtn text-white" href="/dashboard/historic/" role="button">Telefones</a>
+        </div>
+        <div class="col-lg-3">
+          <a class="btn btn-success dashboardBtn" href="/dashboard/historic/" role="button">SMCs</a>
+        </div>
+        <div class="col-lg-3">
+          <a class="btn btn-danger dashboardBtn" href="/dashboard/historic/" role="button">Meus dados</a>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Histórico</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Mais recentes</h6>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Dia</th>
+                      <th scope="col">Horário</th>
+                      <th scope="col">SMC</th>
+                      <th scope="col">Situação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-warning">
+                      <td scope="row">Hoje</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Atrasado</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Hoje</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Ontem</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-danger">
+                      <td scope="row">Ontem</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Não tomou</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Quinta, 16 de Novembro</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> <!-- END CARD -->
+        </div> <!-- END COL-->
+      </div>
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Telefones</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Alertas</h6>
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 99999-9999
+                  <span class="badge badge-success badge-pill">Habilitado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 98888-8888
+                  <span class="badge badge-danger badge-pill">Desabilitado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 99999-9999
+                  <span class="badge badge-success badge-pill">Habilitado</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Informações</h5>
+              <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Nome completo:</th>
+                      <td>Lorem ipsum dolor sit amet</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">E-mail:</th>
+                      <td>nome@examplo.com</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">SMCs cadastrados:</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC 2</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!--END CONTAINER-->
+
+  </section>
+
+{% endblock %}

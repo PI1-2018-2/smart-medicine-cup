@@ -398,3 +398,63 @@ header.carouselBox p {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }
+
+/* Header
+-------------------------------------------------- */
+.titleBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+  z-index: 1;
+}
+
+/* Footer
+-------------------------------------------------- */
+.footerBox {
+  padding-top: 40px;
+}
+
+.footer-bar {
+  margin-top: 10px;
+  height: 60px;
+  line-height: 60px;
+}
+
+/* Team
+-------------------------------------------------- */
+.masthead-team {
+  background-image: url("../img/team.jpg");
+}
+
+/* Dashboard
+-------------------------------------------------- */
+.dashboardBtn {
+  border-radius: .25rem;
+  width: 100%;
+  height: 150px;
+  line-height: 150px;
+  margin-bottom: 1rem;
+}
+
+.dashboardHr {
+  max-width: none;
+  border-color: #009ABB;
+}
+
+.btn-blue {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-blue:hover, .btn-blue:focus, .btn-blue:active {
+  color: #fff;
+  background-color: #006fe6 !important;
+}
+
+.btn-blue:active, .btn-blue:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+}
