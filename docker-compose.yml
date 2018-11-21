@@ -18,6 +18,8 @@ services:
   migrate:
     container_name: 'smart-medicine-cup-backend-migrate'
     build: .
+    env_file:
+      - ./.env.secret
     volumes:
       - .:/home/smart-medicine-cup-backend
     command: python manage.py migrate
@@ -28,9 +30,13 @@ services:
   migrations:
     container_name: 'smart-medicine-cup-backend-migrations'
     build: .
+    env_file:
+      - ./.env.secret
     volumes:
       - .:/home/smart-medicine-cup-backend
     command: python manage.py makemigrations
+    depends_on:
+      - db
     tty: True
 
   command:
@@ -39,3 +45,14 @@ services:
     volumes:
       - .:/home/smart-medicine-cup-backend
     tty: True
+
+  db:
+    container_name: 'smart-medicine-cup-backend-database'
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./.env.secret
+    tty: True
+
