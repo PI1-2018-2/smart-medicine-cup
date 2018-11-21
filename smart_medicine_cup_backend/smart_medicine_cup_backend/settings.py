@@ -26,10 +26,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = [
-   '0.0.0.0',
-   'localhost',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'smc.apps.SmcConfig',
     'landing_page',
     'user',
+    'smc'
 ]
 
 MIDDLEWARE = [
