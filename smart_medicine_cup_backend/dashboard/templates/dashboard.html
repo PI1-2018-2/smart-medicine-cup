@@ -6,15 +6,7 @@
 {% block navlinkclass %}text-white{% endblock %}
 
 {% block navitem %}
-  <li class="nav-item">
-    <a class="nav-link text-white">Olá, &lt;usuário&gt;</a>
-  </li>
-  <li class="nav-item pt-2">
-    <a class="nav-link p-0 text-white"> | </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-white" href="/user/logout/">Sair</a>
-  </li>
+  {% include "navitens.html" %}
 {% endblock %}
 
 {% block content %}
@@ -26,18 +18,7 @@
       <h1 class="text-secondary">Painel SMC</h1>
       <hr class="dashboardHr">
       <div class="row">
-        <div class="col-lg-3">
-          <a class="btn btn-blue dashboardBtn" href="/dashboard/historic/" role="button">Histórico</a>
-        </div>
-        <div class="col-lg-3">
-          <a class="btn btn-warning dashboardBtn text-white" href="/dashboard/historic/" role="button">Telefones</a>
-        </div>
-        <div class="col-lg-3">
-          <a class="btn btn-success dashboardBtn" href="/dashboard/historic/" role="button">SMCs</a>
-        </div>
-        <div class="col-lg-3">
-          <a class="btn btn-danger dashboardBtn" href="/dashboard/registration/" role="button">Meus dados</a>
-        </div>
+        {% include "menu.html" %}
       </div>
       <div class="row mt-3">
         <div class="col-lg-12">
