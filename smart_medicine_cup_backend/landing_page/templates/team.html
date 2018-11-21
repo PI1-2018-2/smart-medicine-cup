@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Equipe - Smart Medicine Cup{% endblock %}
+{% block title %}SMC - Equipe{% endblock %}
 
 {% block hreflogo %}/{% endblock %}
+
+{% block navitem %}
+            <li class="nav-item">
+              <a class="nav-link" href="/user/login/">Login</a>
+            </li>
+{% endblock %}
 
 {% block content %}
     <section class="bg-secondary">
@@ -55,4 +61,32 @@
 
     <header class="masthead masthead-team text-center text-white d-flex">
     </header>
+{% endblock %}
+
+{% block footer %}
+  <div class="container footerBox">
+    <div class="row">
+      <div class="col-lg-9">
+        <h5 class="text-uppercase">Footer</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col-lg-3">
+        <h5 class="text-uppercase">Links</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-white">Link 1</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white">Link 2</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white">Link 3</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white">Link 4</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 {% endblock %}
