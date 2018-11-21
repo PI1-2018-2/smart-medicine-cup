@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'smart_medicine_cup_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smartmedicinecup',
-        'USER': 'smcuser',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'NAME': os.environ['POSTGRES_DB'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
