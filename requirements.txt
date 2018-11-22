@@ -11,7 +11,7 @@ djangorestframework==3.8.1
 gunicorn
 whitenoise
 django-heroku
-django-extensions
+ipython
 coreapi==2.3.3
 factory-boy==2.9.2
 flake8==3.5.0
