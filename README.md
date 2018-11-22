@@ -1,1 +1,1 @@
-# smart-medicine-cup-backend
+# smart-medicine-cup
