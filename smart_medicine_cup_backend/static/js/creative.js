@@ -89,4 +89,21 @@
     }
   });
 
-})(jQuery); // End of use strict
+  // Sticky footer
+  function stickyFooter() {
+    console.log("Vai 1");
+    if ($('footer').offset().top + 60 < $(window).height()) {
+      console.log("if");
+      $('.footer').addClass('stickyFooter');
+    } else {
+      $('.footer').removeClass('stickyFooter');
+      console.log("else");
+    }
+    console.log("Vai 2");
+    console.log("Vai 2");
+  }
+  stickyFooter();
+  $(window).resize(function () {
+    stickyFooter();
+  });
+})(jQuery); // End of use stric

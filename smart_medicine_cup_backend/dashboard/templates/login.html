@@ -4,6 +4,7 @@
 
 {% block navclass %}bg-secondary{% endblock %}
 {% block navlinkclass %}text-white{% endblock %}
+{% block hreflogo %}/{% endblock %}
 
 {% block content %}
 
@@ -11,14 +12,16 @@
 
     <div class="container">
 
-      <h1 class="text-secondary text-center"><i class="fas fa-heartbeat"></i> Smart Medicine Cup</h1>
+      <a class="decotarionNone" href="/">
+        <h1 class="text-secondary text-center"><i class="fas fa-heartbeat"></i> Smart Medicine Cup</h1>
+      </a>
       <hr>
       <div class="row mt-5">
         <div class="col-lg-8 offset-lg-2">
           <div class="card">
             <div class="card-body">
-              <h3 class="text-center">Login</h3>
-              <form class="mt-5 text-right">
+              <h2 class="text-center">Login</h2>
+              <form class="mt-5">
                 <div class="form-group row">
                   <label for="email" class="col-lg-3 col-form-label">E-mail:</label>
                   <div class="col-lg-9">
@@ -39,6 +42,9 @@
                 <div class="form-group row">
                   <div class="col-lg-12 text-center">
                     <a class="text-muted" href="/forget_password/">Esqueci minha senha</a>
+                  </div>
+                  <div class="col-lg-12 mt-2 text-center">
+                    <a class="text-muted" href="/dashboard/registration">Não possuo cadastro</a>
                   </div>
                 </div>
               </form>

@@ -15,11 +15,15 @@
 }
 
 .footer-bar {
-  margin-top: 10px;
   height: 60px;
   line-height: 60px;
 }
 
+.stickyFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 /* Team
 -------------------------------------------------- */
 .masthead-team {
@@ -34,6 +38,7 @@
   height: 150px;
   line-height: 150px;
   margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
 .dashboardHr {
@@ -55,4 +60,8 @@
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(240, 95, 64,.5) !important;
   }
+}
+
+.decotarionNone:hover {
+  text-decoration: none;
 }

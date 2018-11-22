@@ -417,9 +417,14 @@ header.carouselBox p {
 }
 
 .footer-bar {
-  margin-top: 10px;
   height: 60px;
   line-height: 60px;
+}
+
+.stickyFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 /* Team
@@ -436,6 +441,7 @@ header.carouselBox p {
   height: 150px;
   line-height: 150px;
   margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
 .dashboardHr {
@@ -457,4 +463,8 @@ header.carouselBox p {
 .btn-blue:active, .btn-blue:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+}
+
+.decotarionNone:hover {
+  text-decoration: none;
 }
