@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'smc.apps.SmcConfig',
     'landing_page',
     'user',
+    'notification_telegram',
+    'cups',
 ]
 
 MIDDLEWARE = [
