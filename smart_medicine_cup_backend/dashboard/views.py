@@ -16,3 +16,6 @@ class Login(TemplateView):
 
 class Smc(TemplateView):
     template_name = "smc.html"
+
+class Historic(TemplateView):
+    template_name = "historic.html"
