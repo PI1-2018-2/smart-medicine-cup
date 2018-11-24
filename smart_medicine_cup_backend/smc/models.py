@@ -29,7 +29,6 @@ class Alarm(models.Model):
     partition = models.IntegerField(choices=PARTITION_CHOICES)
     start_time = models.TimeField()
     period = models.TimeField()
-    # Duration
     duration = models.IntegerField()
 
     def __str__(self):
@@ -38,7 +37,6 @@ class Alarm(models.Model):
 
 class Record(models.Model):
     alarm = models.ForeignKey(Alarm, on_delete=models.CASCADE)
-    cup = models.ForeignKey("Cup", on_delete=models.CASCADE)
     event = models.CharField(max_length=100)
 
     def __str__(self):
