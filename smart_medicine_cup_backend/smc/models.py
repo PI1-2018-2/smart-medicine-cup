@@ -1,41 +1,45 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
+class Contact(models.Model):
     name = models.CharField(max_length=200)
     phone = models.CharField(max_length=30)
     email = models.EmailField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return f"Name: {self.name} Phone: {self.phone}"
 
 
 class Cup(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    contact = ArrayField(models.CharField(max_length=200))
-
-    def __str__(self):
-        return self.user.name
-
-
-class Partition(models.Model):
-    cup = models.ForeignKey(Cup, on_delete=models.CASCADE)
-    was_taken = models.BooleanField()
-    message_moment = models.TimeField()
-
-    def __str__(self):
-        return self.id
+    user = models.ManyToManyField(User)
+    contact = models.ForeignKey("Contact", on_delete=models.CASCADE)
 
 
 class Alarm(models.Model):
-    partition = models.ForeignKey(Partition, on_delete=models.CASCADE)
+    PARTITION_CHOICES = (
+        (1, "One"),
+        (2, "Two"),
+        (3, "Three"),
+        (4, "Four"),
+    )
+
+    cup = models.ForeignKey(Cup, on_delete=models.CASCADE)
+    partition = models.IntegerField(choices=PARTITION_CHOICES)
     start_time = models.TimeField()
     period = models.TimeField()
     # Duration
-    day_length = models.IntegerField()
-    # Registered or cancelled
-    event = models.CharField(max_length=50)
+    duration = models.IntegerField()
 
     def __str__(self):
-        return f"Start time {self.start_time}, Period {self.period} for {self.day_length} day(s)"
+        return f"Start time {self.start_time}, Period {self.period} for {self.duration} day(s)"
+
+
+class Record(models.Model):
+    alarm = models.ForeignKey(Alarm, on_delete=models.CASCADE)
+    cup = models.ForeignKey("Cup", on_delete=models.CASCADE)
+    event = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Alarm {self.alarm} from cup {self.cup}, event: {self.event}"
