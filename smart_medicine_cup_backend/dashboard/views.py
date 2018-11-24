@@ -13,3 +13,6 @@ class EditRegistration(TemplateView):
 
 class Login(TemplateView):
     template_name = "login.html"
+
+class Smc(TemplateView):
+    template_name = "smc.html"
