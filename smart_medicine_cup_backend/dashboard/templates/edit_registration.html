@@ -72,3 +72,12 @@
   </section>
 
 {% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+    (function($) {
+      "use strict"; // Start of use strict
+      $('.dashboardBtn').eq(3).addClass('disabled');
+    })(jQuery); // End of use stric
+  </script>
+{% endblock %}
