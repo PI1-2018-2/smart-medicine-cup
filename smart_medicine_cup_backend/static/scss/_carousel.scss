@@ -1,0 +1,52 @@
+// Styling for the carousel
+header.carouselBox {
+  hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-weight: 300;
+  }
+  @media (min-width: 768px) {
+    p {
+      font-size: 1.15rem;
+    }
+  }
+  @media (min-width: 992px) {
+    h1 {
+      font-size: 3rem;
+    }
+  }
+  @media (min-width: 1200px) {
+    h1 {
+      font-size: 4rem;
+    }
+  }
+}
+
+.carousel-item {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-position: center center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  @include background-cover;
+  height: 100vh;
+  min-height: 650px;
+}
+
+.carousel-item-1 {
+  background-image: url('../img/slide-1.jpg');
+}
+
+.carousel-item-2 {
+  background-image: url('../img/slide-2.jpg');
+}
+
+.carousel-item-3 {
+  background-image: url('../img/slide-3.jpg');
+}

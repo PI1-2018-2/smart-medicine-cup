@@ -1,0 +1,67 @@
+/* Header
+-------------------------------------------------- */
+.titleBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+}
+
+/* Footer
+-------------------------------------------------- */
+.footerBox {
+  padding-top: 40px;
+}
+
+.footer-bar {
+  height: 60px;
+  line-height: 60px;
+}
+
+.stickyFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+/* Team
+-------------------------------------------------- */
+.masthead-team {
+  background-image: url("../img/team.jpg");
+}
+
+/* Dashboard
+-------------------------------------------------- */
+.dashboardBtn {
+  border-radius: .25rem;
+  width: 100%;
+  height: 150px;
+  line-height: 150px;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.dashboardHr {
+  max-width: none;
+  border-color: $secondary;
+}
+
+.btn-blue {
+  color: $white;
+  background-color: $blue;
+  border-color: $blue;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+    background-color: darken($blue, 5%) !important;
+  }
+  &:active,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(240, 95, 64,.5) !important;
+  }
+}
+
+.decotarionNone:hover {
+  text-decoration: none;
+}

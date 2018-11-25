@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'smc.apps.SmcConfig',
     'landing_page',
+    'dashboard',
     'user',
 ]
 
