@@ -1,4 +1,3 @@
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -30,15 +29,16 @@ class Alarm(models.Model):
     start_time = models.TimeField()
     period = models.TimeField()
     duration = models.IntegerField()
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Start time {self.start_time}, Period {self.period} for {self.duration} day(s)"
+        return f"{self.is_active} - Start time {self.start_time}, Period {self.period} for {self.duration} day(s)"
 
 
 class Record(models.Model):
     alarm = models.ForeignKey(Alarm, on_delete=models.CASCADE)
     event = models.CharField(max_length=100)
-    moment = models.TimeField()
+    moment = models.DateTimeField()
 
     def __str__(self):
         return f"[{self.moment}]: Alarm {self.alarm} {self.event}"
