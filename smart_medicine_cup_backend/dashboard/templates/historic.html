@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}SMC - Painel - Histórico{% endblock %}
+
+{% block navclass %}bg-secondary{% endblock %}
+{% block navlinkclass %}text-white{% endblock %}
+{% block hreflogo %}/dashboard/{% endblock %}
+
+{% block navitem %}
+  {% include "navitens.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <section>
+
+    <div class="container">
+
+      <h1 class="text-secondary">Painel SMC</h1>
+      <hr class="dashboardHr">
+      <div class="row">
+        {% include "menu.html" %}
+      </div>
+      <div class="row mt-3">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Histórico</h3>
+              <div class="row bg-blue m-0 mb-4 pb-1"></div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Dia</th>
+                      <th scope="col">Horário</th>
+                      <th scope="col">SMC</th>
+                      <th scope="col">Situação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-warning">
+                      <td scope="row">Hoje</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Atrasado</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Hoje</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Ontem</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-danger">
+                      <td scope="row">Ontem</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Não tomou</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Quinta, 16 de Novembro</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-warning">
+                      <td scope="row">Hoje</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Atrasado</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Hoje</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Ontem</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-danger">
+                      <td scope="row">Ontem</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Não tomou</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Quinta, 16 de Novembro</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <nav aria-label="...">
+                <ul class="pagination pagination-lg justify-content-center">
+                  <li class="page-item disabled">
+                    <span class="page-link">Anterior</span>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">
+                      1
+                      <span class="sr-only">(current)</span>
+                    </span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Próxima</a>
+                  </li>
+                </ul>
+              </nav>
+              <div class="row">
+                <div class="col-lg-12 text-center">
+                  <a class="btn btn-lg btn-secondary text-white" href="/dashboard/">Home</a>
+                </div>
+              </div>
+            </div>
+          </div> <!-- END CARD -->
+        </div> <!-- END COL-->
+      </div><!-- END ROW-->
+
+    </div> <!--END CONTAINER-->
+
+  </section>
+
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+    (function($) {
+      "use strict"; // Start of use strict
+      $('.dashboardBtn').eq(0).addClass('disabled');
+    })(jQuery); // End of use stric
+  </script>
+{% endblock %}
