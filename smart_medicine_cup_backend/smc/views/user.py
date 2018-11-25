@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
-from ..forms.user import SignUpForm, LoginForm
+from ..forms.user import SignUpForm
 
 
 def signup(request):
@@ -39,9 +39,6 @@ def user_login(request):
                 return HttpResponseRedirect(reverse('dashboard/'))
             else:
                 print('Error login')
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})
 
 
 @login_required
