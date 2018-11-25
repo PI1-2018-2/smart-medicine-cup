@@ -8,7 +8,7 @@ note_resource = NotificationResource()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls')),
+    path('api/', include('smc.urls')),
     path('dashboard/', include('dashboard.urls')),
-    path('user/', include('user.urls')),
     url(r'^api/', include(note_resource.urls)),
 ]
