@@ -89,4 +89,16 @@
     }
   });
 
-})(jQuery); // End of use strict
+  // Sticky footer
+  function stickyFooter() {
+    if ($('footer').offset().top + 60 < $(window).height()) {
+      $('.footer').addClass('stickyFooter');
+    } else {
+      $('.footer').removeClass('stickyFooter');
+    }
+  }
+  stickyFooter();
+  $(window).resize(function () {
+    stickyFooter();
+  });
+})(jQuery); // End of use stric

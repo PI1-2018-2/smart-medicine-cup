@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}SMC - Painel{% endblock %}
+
+{% block navclass %}bg-secondary{% endblock %}
+{% block navlinkclass %}text-white{% endblock %}
+
+{% block navitem %}
+  {% include "navitens.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <section>
+
+    <div class="container">
+
+      <h1 class="text-secondary">Painel SMC</h1>
+      <hr class="dashboardHr">
+      <div class="row">
+        {% include "menu.html" %}
+      </div>
+      <div class="row mt-3">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Histórico</h3>
+              <h5 class="card-subtitle mb-2 text-muted">Mais recentes</h5>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Dia</th>
+                      <th scope="col">Horário</th>
+                      <th scope="col">SMC</th>
+                      <th scope="col">Situação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-warning">
+                      <td scope="row">Hoje</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Atrasado</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Hoje</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Ontem</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-danger">
+                      <td scope="row">Ontem</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Não tomou</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Quinta, 16 de Novembro</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> <!-- END CARD -->
+        </div> <!-- END COL-->
+      </div>
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Telefones</h3>
+              <h5 class="card-subtitle mb-2 text-muted">Alertas</h5>
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 99999-9999
+                  <span class="badge badge-success badge-pill">Habilitado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 98888-8888
+                  <span class="badge badge-danger badge-pill">Desabilitado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 99999-9999
+                  <span class="badge badge-success badge-pill">Habilitado</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Informações</h3>
+              <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Nome completo:</th>
+                      <td>Lorem ipsum dolor sit amet</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">E-mail:</th>
+                      <td>nome@examplo.com</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">SMCs cadastrados:</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC 2</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!--END CONTAINER-->
+
+  </section>
+
+{% endblock %}
