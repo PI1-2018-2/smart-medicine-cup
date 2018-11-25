@@ -2,7 +2,8 @@ import json
 from datetime import datetime
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import User, Cup, Partition
+
+from .models import User, Cup, Contact, Alarm, Record
 
 
 @csrf_exempt
@@ -11,47 +12,69 @@ def register_info(request):
     try:
         data = json.loads(request.body)
     except Exception as e:
-        print("Error parsing JSON object: ", e)
+        print('Error parsing JSON object: ', e)
 
-    cup_id = Cup.objects.get(pk=data['id_cup'])
-    print("Cup: ", cup_id)
+    try:
+        cup = Cup.objects.get(pk=data['id_cup'])
+    except Exception as e:
+        print(f'Error: {e}, Cup id not found.')
 
-    partitions = Partition.objects.all().filter(cup_id=cup_id)
-    print("Partitions", [p.id for p in partitions])
-    print("Selected partition: ", data['partition'])
 
-    current_partition = [p for p in partitions if p.id == data['partition']]
-    current_partition = current_partition.pop(0)
-    print("Current partition", current_partition)
-
-    if not current_partition:
-        print("ERROR: no partition selected")
-
-    event = data['event']
-    print("Event: ", event)
-
-    if event == 'taken' or event == 'not_taken':
-        current_partition.was_taken = event
-    elif event == 'registered' or event == 'removed':
-        pass
-        # TODO Create observation attribute
-        # current_partition.observation = event
+    if data['event'] == 'registered':
+        register_alarm(data)
+    elif data['event'] == 'taken':
+        update_alarm(data)
+    elif data['event'] == 'cancelled':
+        cancel_alarm(data)
     else:
-        print("Error: Unexpected Cup Event: ", event)
+        print('[ERROR]: Unhandled event option')
 
-    print("Partition Event: ", current_partition.was_taken)
-
-    start_time_hour = data["alarm_info"]["start"]["hour"]
-    start_time_minute = data["alarm_info"]["start"]["minute"]
-
-    period_time_hour = data["alarm_info"]["period"]["hour"]
-    period_time_minute = data["alarm_info"]["period"]["minute"]
-
-    duration = data["alarm_info"]["duration"]
-
-    print(f"start time {start_time_hour}:{start_time_minute}")
-    print(f"period time {period_time_hour}:{period_time_minute}")
-    print(f"duration time {duration}")
-
-    print('dados --->', request.body)
     return HttpResponse(200, {'detail': 'deu bom!'})
+
+
+def register_alarm(data):
+    alarm = Alarm(
+        cup=Cup.objects.get(id=data['id_cup']),
+        partition=data['partition'],
+        start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
+        period=f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00",
+        duration=data['alarm_info']['duration'],
+    )
+    print('New alarm registered', alarm)
+    alarm.save()
+
+    alarm_record = Record(
+        alarm=alarm,
+        event=data['event']
+    )
+    print(alarm_record)
+    alarm_record.save()
+
+
+def cancel_alarm(data):
+    alarm = Alarm.objetcs.get(cup=data['id_cup'])
+    alarm_record = Record.objects.get(alarm=alarm.id)
+    alarm.delete()
+    alarm_record.delete()
+
+
+def update_alarm(data):
+    cup_alarm = Alarm.objects.get(cup=data['id_cup'])
+    print('Before', cup_alarm)
+    start_time = f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00"
+    print(start_time)
+    cup_alarm.start_time = start_time
+    period = f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00"
+    print(period)
+    cup_alarm.period = period
+    cup_alarm.duration = data['alarm_info']['duration']
+    print(cup_alarm)
+    cup_alarm.save()
+    update_record(cup_alarm.id, data['event'])
+
+
+def update_record(alarm_id, event):
+    alarm_record = Record.objects.get(alarm=alarm_id)
+    alarm_record.event = event
+    print(alarm_record)
+    alarm_record.save()
