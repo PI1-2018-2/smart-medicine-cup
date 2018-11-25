@@ -468,3 +468,7 @@ header.carouselBox p {
 .decotarionNone:hover {
   text-decoration: none;
 }
+
+.bg-blue {
+  background-color: #007bff !important;
+}
