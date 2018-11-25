@@ -19,3 +19,6 @@ class Smc(TemplateView):
 
 class Historic(TemplateView):
     template_name = "historic.html"
+
+class Contacts(TemplateView):
+    template_name = "contacts.html"
