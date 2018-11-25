@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'smc',
     'landing_page',
     'dashboard',
+    'user',
+    'notification_telegram',
+    'cups',
 ]
 
 MIDDLEWARE = [
