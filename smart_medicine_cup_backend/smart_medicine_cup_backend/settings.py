@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'smc.apps.SmcConfig',
+    'django_extensions',
+    'smc',
     'landing_page',
     'dashboard',
-    'user',
 ]
 
 MIDDLEWARE = [
