@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'smc',
     'landing_page',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
