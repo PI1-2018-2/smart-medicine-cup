@@ -36,38 +36,16 @@
                       <th scope="col">Situação</th>
                     </tr>
                   </thead>
+                  {% for element in list_record %}
                   <tbody>
                     <tr class="table-warning">
-                      <td scope="row">Hoje</td>
-                      <td>18:00</td>
-                      <td>Meu SMC</td>
-                      <td>Atrasado</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td scope="row">Hoje</td>
-                      <td>06:00</td>
-                      <td>Meu SMC</td>
-                      <td>Ok</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td scope="row">Ontem</td>
-                      <td>18:00</td>
-                      <td>Meu SMC</td>
-                      <td>Ok</td>
-                    </tr>
-                    <tr class="table-danger">
-                      <td scope="row">Ontem</td>
-                      <td>06:00</td>
-                      <td>Meu SMC</td>
-                      <td>Não tomou</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td scope="row">Quinta, 16 de Novembro</td>
-                      <td>18:00</td>
-                      <td>Meu SMC</td>
-                      <td>Ok</td>
+                      <td scope="row"></td>
+                      <td>element.moment</td>
+                      <td>element.event</td>
+                      <td>element.partition</td>
                     </tr>
                   </tbody>
+                  {% endfor %}
                 </table>
               </div>
             </div>
