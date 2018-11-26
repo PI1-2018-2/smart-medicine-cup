@@ -36,12 +36,14 @@
                       <th scope="col">SMC</th>
                     </tr>
                   </thead>
+                  {% for element in list_cups %}
                   <tbody>
                     <tr>
-                      <td scope="row">1</td>
-                      <td>ABC123</td>
+                      <td scope="row">{{element.pk}}</td>
+                      <td>{{element.cup_id}}</td>
                     </tr>
                   </tbody>
+                  {% endfor %}
                 </table>
               </div>
               <div class="row">
@@ -50,9 +52,10 @@
                 </div>
                 <div class="col-lg-6 text-left">
                   <button type="submit" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Adicionar</button>
+                  <button class="btn btn-lg btn-primary" onclick="location.href={% url 'addsmc' %}" type="button"> Adicionar</button>
                 </div>
               </div>
-              <!-- Modal -->
+              {% comment %} <!-- Modal -->
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalAddSmc" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -82,7 +85,7 @@
                     </div>
                   </div>
                 </div>
-              </div> <!-- END Modal -->
+              </div> <!-- END Modal --> {% endcomment %}
             </div>
           </div> <!-- END CARD -->
         </div> <!-- END COL-->
