@@ -4,7 +4,7 @@ from django.utils.decorators import method_decorator
 
 # Local Django imports
 from cups.models import Cup, Record, Contact
-from cups.forms import CupForm
+from cups.forms import CupForm, ContactForm
 
 class Dashboard(View):
     """
@@ -61,6 +61,23 @@ class AddSmc(FormView):
         self.cup.save()
 
         return super(AddSmc, self).form_valid(form)
+
+
+class AddContact(FormView):
+    template_name = "addcontact.html"
+    form_class = ContactForm
+    success_url = '/dashboard/contacts'
+
+    def dispatch(self, *args, **kwargs):
+        return super(AddContact, self).dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        self.contact = form.save(commit=False)
+        self.contact.user_id = self.request.user.id
+        self.contact.save()
+
+        return super(AddContact, self).form_valid(form)
+
 
 
 class Smc(ListView):
