@@ -1,20 +1,24 @@
-# from django.db import models
+from django.db import models
+from django.contrib.auth.models import User
 
-# class Cup(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     contact = ArrayField(models.CharField(max_length=200))
+class Contact(models.Model):
+    user = models.ForeignKey(User,  default=1, on_delete=models.CASCADE, related_name='user_contact')
+    name = models.CharField(max_length=200)
+    username = models.CharField(max_length=30)
 
-#     def __str__(self):
-#         return self.user.name
+class Cup(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_cup')
+    cup_id = models.CharField(max_length=30)
 
-
-# class Partition(models.Model):
-#     #  explicitly define id so we can return it in __str__
-#     id = models.AutoField(primary_key=True)
-#     cup = models.ForeignKey(Cup, on_delete=models.CASCADE)
-#     medicine_time = models.TimeField()
-#     medicine_date = models.DateTimeField()
-#     was_taken = models.BooleanField()
-
-#     def __str__(self):
-#         return "{} {}".format(medicine_date, medicine_time)
+class Record(models.Model):
+    cup_id = models.CharField(max_length=30)
+    PARTITION_CHOICES = (
+        (1, "One"),
+        (2, "Two"),
+        (3, "Three"),
+        (4, "Four"),
+    )
+    
+    event = models.CharField(max_length=100)
+    moment = models.DateTimeField()
+    partition = models.IntegerField(choices=PARTITION_CHOICES)
