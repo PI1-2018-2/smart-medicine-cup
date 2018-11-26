@@ -58,17 +58,8 @@
               <h5 class="card-subtitle mb-2 text-muted">Alertas</h5>
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  (61) 99999-9999
-                  <span class="badge badge-success badge-pill">Habilitado</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  (61) 98888-8888
-                  <span class="badge badge-danger badge-pill">Desabilitado</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  (61) 99999-9999
-                  <span class="badge badge-success badge-pill">Habilitado</span>
-                </li>
+                  {{request.user.phone}}
+                  
               </ul>
             </div>
           </div>
@@ -87,24 +78,19 @@
                     </tr>
                     <tr>
                       <th scope="row">E-mail:</th>
-                      <td>nome@examplo.com</td>
+                      <td>{{request.user.email}}</td>
                     </tr>
                     <tr>
                       <th scope="row">SMCs cadastrados:</th>
                       <td></td>
                     </tr>
+                    {% for element in list_record %}
                     <tr>
-                      <th scope="row"></th>
-                      <td>My SMC</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td>My SMC 1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td>My SMC 2</td>
-                    </tr>
+                        <th scope="row"></th>
+                        <td>{{element.cup_id}}</td>
+                      </tr>
+                      <tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
