@@ -3,7 +3,7 @@ from django.views.generic import ListView, TemplateView, CreateView, FormView, V
 from django.utils.decorators import method_decorator
 
 # Local Django imports
-from cups.models import Cup, Record
+from cups.models import Cup, Record, Contact
 from cups.forms import CupForm
 
 class Dashboard(View):
@@ -35,6 +35,17 @@ class EditRegistration(TemplateView):
 class Login(TemplateView):
     template_name = "login.html"
 
+class Contacts(ListView):
+    template_name = "contacts.html"
+    context_object_name = 'list_contacts'
+    model = Contact
+    ordering = ['-date_created']
+
+    def dispatch(self, *args, **kwargs):
+        return super(Contacts, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
 
 class AddSmc(FormView):
     template_name = "addsmc.html"

@@ -8,4 +8,5 @@ urlpatterns = [
     path('smc/', views.Smc.as_view()),
     path('historic/', views.Historic.as_view()),
     path('addsmc/', views.AddSmc.as_view(), name='addsmc'),
+    path('contacts/', views.Contacts.as_view(),),
 ]
