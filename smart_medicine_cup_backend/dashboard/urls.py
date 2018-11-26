@@ -7,5 +7,5 @@ urlpatterns = [
     path('login/', views.Login.as_view()),
     path('smc/', views.Smc.as_view()),
     path('historic/', views.Historic.as_view()),
-    path('addsmc/', views.AddSmc.as_view()),
+    path('addsmc/', views.AddSmc.as_view(), name='addsmc'),
 ]
