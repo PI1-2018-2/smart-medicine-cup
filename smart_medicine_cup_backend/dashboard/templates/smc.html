@@ -51,8 +51,7 @@
                   <a class="btn btn-lg btn-secondary text-white" href="/dashboard/">Home</a>
                 </div>
                 <div class="col-lg-6 text-left">
-                  <button type="submit" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Adicionar</button>
-                  <button class="btn btn-lg btn-primary" onclick="location.href={% url 'addsmc' %}" type="button"> Adicionar</button>
+                  <a href="{% url 'addsmc' %}" class="btn btn-lg btn-primary">Adicionar</a>
                 </div>
               </div>
               {% comment %} <!-- Modal -->
