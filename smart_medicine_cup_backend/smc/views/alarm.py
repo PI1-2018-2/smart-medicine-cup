@@ -2,40 +2,39 @@ import json
 from datetime import datetime
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.exceptions import ObjectDoesNotExist
 
 from ..models import User, Cup, Contact, Alarm, Record
 
 
 @csrf_exempt
 def register_info(request):
-    print(request.body)
     try:
         data = json.loads(request.body)
-    except Exception as e:
-        print('Error parsing JSON object: ', e)
+    except ValueError as e:
+        return HttpResponse(status=413)
 
     try:
         cup = Cup.objects.get(pk=data['id_cup'])
     except Exception as e:
-        print(f'Error: {e}, Cup id not found.')
+        return HttpResponse(status=204)
 
     # Decides which action to take based on event
-    event_handler(data)
-
-    return HttpResponse(200, {'detail': 'deu bom!'})
+    response_code = event_handler(data)
+    return HttpResponse(status=response_code, content=request.body)
 
 
 def event_handler(data):
     if data['event'] == 'registered':
-        register_alarm(data)
+        return register_alarm(data)
     elif data['event'] == 'taken':
-        update_alarm(data)
+        return update_alarm(data)
     elif data['event'] == 'not_taken':
-        alert_contact(data)
+        return alert_contact(data)
     elif data['event'] == 'cancelled':
-        cancel_alarm(data)
+        return cancel_alarm(data)
     else:
-        print('[ERROR]: Unhandled event option')
+        return 400
 
 
 def register_alarm(data):
@@ -47,7 +46,6 @@ def register_alarm(data):
         duration=data['alarm_info']['duration'],
         is_active=True,
     )
-    print('New alarm registered', alarm)
     alarm.save()
 
     alarm_record = Record(
@@ -55,42 +53,54 @@ def register_alarm(data):
         event=data['event'],
         moment=data['moment']
     )
-    print(alarm_record)
     alarm_record.save()
+
+    return 201
 
 
 def cancel_alarm(data):
-    alarm = Alarm.objetcs.get(cup=data['id_cup'])
+    try:
+        alarm = Alarm.objetcs.get(cup=data['id_cup'])
+    except:
+        return 204
     alarm.is_active = False
     alarm.save()
     update_record(alarm.id, data)
 
+    return 200
+
 
 def update_alarm(data):
-    cup_alarm = Alarm.objects.get(cup=data['id_cup'])
-    print('Before', cup_alarm)
+    cup_alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
+
+    if not cup_alarm:
+        return 204
+
     start_time = f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00"
-    print(start_time)
     cup_alarm.start_time = start_time
 
     period = f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00"
-    print(period)
     cup_alarm.period = period
 
     cup_alarm.duration = data['alarm_info']['duration']
     cup_alarm.is_active = True
-    print(cup_alarm)
 
     cup_alarm.save()
     update_record(cup_alarm.id, data)
 
+    return 200
+
 
 def update_record(alarm_id, data):
-    alarm_record = Record.objects.get(alarm=alarm_id)
+    try:
+        alarm_record = Record.objects.get(alarm=alarm_id)
+    except:
+        return 204
     alarm_record.event = data['event']
     alarm_record.moment = data['moment']
-    print(alarm_record)
     alarm_record.save()
+
+    return 200
 
 
 def alert_contact(data):
