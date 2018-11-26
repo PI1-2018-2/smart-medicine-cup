@@ -22,13 +22,19 @@
             <div class="card-body">
               <h2 class="text-center">Cadastro</h2>
               <h5 class="card-subtitle mb-2 text-muted text-center">Faça aqui seu cadastro</h5>
-              <form class="mt-5" method="post" action="/api/signup/">
+              <form class="mt-5" method="post">
                 {% csrf_token %}
                 {% for field in form %}
-                  <div class="form-group row">
+                  <div class="form-group row has-danger">
                     <label for="name" class="col-lg-3 col-form-label">{{ field.label_tag }}</label>
                     <div class="col-lg-9">
                       {{ field }}
+                      {% for error in field.errors %}
+                        <p class="form-text text-danger">{{ error }}</p>
+                      {% endfor %}
+                      <!-- {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                      {% endif %} -->
                     </div>
                   </div>
                 {% endfor %}
