@@ -33,14 +33,16 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">SMC</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Username</th>
                     </tr>
                   </thead>
                   {% for element in list_contacts %}
                   <tbody>
                     <tr>
                       <td scope="row">{{element.pk}}</td>
-                      <td>{{element.cup_id}}</td>
+                      <td>{{element.name}}</td>
+                      <td>{{element.username}}</td>
                     </tr>
                   </tbody>
                   {% endfor %}
@@ -51,7 +53,7 @@
                   <a class="btn btn-lg btn-secondary text-white" href="/dashboard/">Home</a>
                 </div>
                 <div class="col-lg-6 text-left">
-                  <a href="{% url 'addsmc' %}" class="btn btn-lg btn-primary">Adicionar</a>
+                  <a href="{% url 'addcontact' %}" class="btn btn-lg btn-primary">Adicionar</a>
                 </div>
               </div>
               {% comment %} <!-- Modal -->
