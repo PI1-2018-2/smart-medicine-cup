@@ -18,3 +18,5 @@ coverage.xml
 
 # env file
 .env*
+
+\.vscode/
