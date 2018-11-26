@@ -2,9 +2,8 @@
 from django.conf.urls import url
 
 # Local Django
-from .views import (ListCups
+from .views import (ListRecords
                     )
 
 urlpatterns = (
-    url(r'^list_cups/$', ListCups.as_view(), name='list_cups'),
     )

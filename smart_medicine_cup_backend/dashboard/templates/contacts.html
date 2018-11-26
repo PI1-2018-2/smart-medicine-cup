@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}SMC - Painel - Meus SMCs{% endblock %}
+{% block title %}SMC - Painel - Contatos{% endblock %}
 
 {% block navclass %}bg-secondary{% endblock %}
 {% block navlinkclass %}text-white{% endblock %}
@@ -15,7 +15,6 @@
   <section>
 
     <div class="container">
-
       <h1 class="text-secondary">Painel SMC</h1>
       <hr class="dashboardHr">
       <div class="row">
@@ -25,22 +24,24 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Meus SMCs</h3>
+              <h3 class="card-title">Meus Contatos</h3>
               <div class="row bg-success m-0 mb-4 pb-1"></div>
-              <h5 class="card-subtitle mb-2 text-muted">Clique em ADICIONAR para cadastrar um novo SMC</h5>
+              <h5 class="card-subtitle mb-2 text-muted">Clique em ADICIONAR para cadastrar um novo contato</h5>
               <div class="table-responsive mt-5">
                 <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">SMC</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Username</th>
                     </tr>
                   </thead>
-                  {% for element in list_cups %}
+                  {% for element in list_contacts %}
                   <tbody>
                     <tr>
                       <td scope="row">{{element.pk}}</td>
-                      <td>{{element.cup_id}}</td>
+                      <td>{{element.name}}</td>
+                      <td>{{element.username}}</td>
                     </tr>
                   </tbody>
                   {% endfor %}
@@ -51,7 +52,7 @@
                   <a class="btn btn-lg btn-secondary text-white" href="/dashboard/">Home</a>
                 </div>
                 <div class="col-lg-6 text-left">
-                  <a href="{% url 'addsmc' %}" class="btn btn-lg btn-primary">Adicionar</a>
+                  <a href="{% url 'addcontact' %}" class="btn btn-lg btn-primary">Adicionar</a>
                 </div>
               </div>
               {% comment %} <!-- Modal -->

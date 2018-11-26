@@ -1,8 +1,10 @@
 # api/resources.py
 from tastypie.resources import ModelResource
-from .models import Note
+from cups.models import Record
+from tastypie.authorization import Authorization
 
 class NotificationResource(ModelResource):
     class Meta:
-        queryset = Note.objects.all()
+        queryset = Record.objects.all()
         resource_name = 'notification'
+        authorization = Authorization()

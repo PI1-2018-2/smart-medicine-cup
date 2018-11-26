@@ -32,13 +32,13 @@
                 <div class="form-group row">
                   <label for="name" class="col-lg-3 col-form-label">Nome completo:</label>
                   <div class="col-lg-9">
-                    <input type="email" class="form-control" id="name" value="Fulano da Silva" disabled>
+                    <input type="email" class="form-control" id="name" value="{{request.user.first_name}} {{request.user.last_name}}" disabled>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="email" class="col-lg-3 col-form-label">E-mail:</label>
                   <div class="col-lg-9">
-                    <input type="email" class="form-control" id="email" value="meuemail@email.com.br" disabled>
+                    <input type="email" class="form-control" id="email" value="{{request.user.email}}" disabled>
                   </div>
                 </div>
                 <div class="form-group row">
