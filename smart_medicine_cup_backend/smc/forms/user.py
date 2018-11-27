@@ -4,9 +4,12 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}), label='Nome de usuário', error_messages={'required': 'Por favor, informe um nome que será usado no login.', 'max_length': 'Por favor, escolher um nome menor.'})
+    first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}), label='Nome')
+    last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}), label='Sobrenome')
+    email = forms.EmailField(max_length=254, widget=forms.TextInput(attrs={'class':'form-control'}), label='E-mail')
+    password1 = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control', 'type':'password'}), label='Senha')
+    password2 = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control', 'type':'password'}), label='Confirmar senha')
 
     class Meta:
         model = User

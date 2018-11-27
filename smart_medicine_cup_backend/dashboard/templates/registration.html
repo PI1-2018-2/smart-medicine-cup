@@ -6,6 +6,12 @@
 {% block navlinkclass %}text-white{% endblock %}
 {% block hreflogo %}/{% endblock %}
 
+{% block navitem %}
+  <li class="nav-item">
+    <a class="nav-link" href="/dashboard/login/">Login</a>
+  </li>
+{% endblock %}
+
 {% block content %}
 
   <section>
@@ -29,6 +35,12 @@
                     <label for="name" class="col-lg-3 col-form-label">{{ field.label_tag }}</label>
                     <div class="col-lg-9">
                       {{ field }}
+                      {% for error in field.errors %}
+                        <p class="form-text text-danger">{{ error }}</p>
+                      {% endfor %}
+                      <!-- {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                      {% endif %} -->
                     </div>
                   </div>
                 {% endfor %}
