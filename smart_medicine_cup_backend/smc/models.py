@@ -13,6 +13,8 @@ class Contact(models.Model):
 
 
 class Cup(models.Model):
+    activate = models.IntegerField()
+    is_activated = models.BooleanField()
     user = models.ManyToManyField(User)
     contact = models.ForeignKey("Contact", on_delete=models.CASCADE)
 
