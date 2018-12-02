@@ -26,8 +26,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = os.environ.get('DEBUG', False)
 
 ALLOWED_HOSTS = [
-   '0.0.0.0',
-   'localhost',
+        'localhost',
+        '0.0.0.0',
 ]
 
 LOGIN_REDIRECT_URL = 'dashboard/'
