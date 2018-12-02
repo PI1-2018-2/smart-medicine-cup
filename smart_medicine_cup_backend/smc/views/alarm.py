@@ -12,49 +12,45 @@ def register_info(request):
         return HttpResponse(status=405, content={'error': 'wrong method, use POST'})
 
     if request.content_type != 'application/json':
-        print(request.content_type)
         return HttpResponse(status=415, content={'error': 'wrong content-type, use application/json'})
 
     try:
         data = json.loads(request.body)
-    except ValueError:
-        return HttpResponse(status=400, content={'error': 'wrong JSON format'})
+        handler = get_event_handler(data['event'])
+        response = handler(data)
+    except KeyError:
+        response = HttpResponse(status=400, content={'error': 'invalid Json'})
 
-    try:
-        Cup.objects.get(pk=data['id_cup'])
-    except ObjectDoesNotExist:
-        return HttpResponse(status=404, content={'error': 'cannot find cup id'})
-
-    # Decides which action to take based on event
-    return event_handler(data)
+    return response
 
 
-def event_handler(data):
-    if data['event'] == 'registered':
-        return register_alarm(data)
-    if data['event'] == 'taken':
-        return update_record(data)
-    if data['event'] == 'not_taken':
-        return alert_contact(data)
-    if data['event'] == 'cancelled':
-        return cancel_alarm(data)
+def get_event_handler(event):
+    handlers = {
+        'registered': register_alarm,
+        'taken': update_record,
+        'not_taken': alert_contact,
+        'cancelled': cancel_alarm
+    }
 
-    return HttpResponse(status=400, content={'error': 'cannot handle event'})
+    return handlers[event]
 
 
 def register_alarm(data):
     if data['partition'] > 4 or data['partition'] < 1:
         return HttpResponse(status=400, content={'error': 'wrong partition range'})
 
-    alarm = Alarm(
-        cup=Cup.objects.get(id=data['id_cup']),
-        partition=data['partition'],
-        start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
-        period=f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00",
-        duration=data['alarm_info']['duration'],
-        is_active=True,
-    )
-    alarm.save()
+    try:
+        alarm = Alarm(
+            cup=Cup.objects.get(id=data['id_cup']),
+            partition=data['partition'],
+            start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
+            period=f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00",
+            duration=data['alarm_info']['duration'],
+            is_active=True,
+        )
+        alarm.save()
+    except ObjectDoesNotExist:
+        return HttpResponse(status=404, content={'error': 'cannot find cup with given id'})
 
     alarm_record = Record(
         alarm=alarm,
@@ -63,20 +59,17 @@ def register_alarm(data):
     )
     alarm_record.save()
 
-    return HttpResponse(status=201)
+    return HttpResponse(status=201, content={'ok': 'Register saved!'})
 
 
 def cancel_alarm(data):
-    try:
-        alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
-    except ObjectDoesNotExist:
-        return HttpResponse(status=404, content={'error': 'Cannot find alarm'})
+    alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
 
     if alarm:
         alarm.is_active = False
         alarm.save()
         update_record(data)
-        return HttpResponse(status=201)
+        return HttpResponse(status=201, content={'ok': 'Register saved!'})
 
     return HttpResponse(status=404, content={'error': 'Cannot find alarm'})
 
@@ -84,40 +77,41 @@ def cancel_alarm(data):
 def update_alarm(data):
     alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
 
-    if not alarm:
-        return HttpResponse(status=404, content={'error': 'Cannot find alarm'})
+    if alarm:
+        start_time = f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00"
+        alarm.start_time = start_time
 
-    start_time = f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00"
-    alarm.start_time = start_time
+        period = f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00"
+        alarm.period = period
 
-    period = f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00"
-    alarm.period = period
+        alarm.duration = data['alarm_info']['duration']
+        alarm.is_active = True
 
-    alarm.duration = data['alarm_info']['duration']
-    alarm.is_active = True
+        alarm.save()
+        update_record(data)
 
-    alarm.save()
-    update_record(data)
-
-    return HttpResponse(status=201)
+        return HttpResponse(status=201, content={'ok': 'Register saved!'})
+    return HttpResponse(status=404, content={'error': "There's no registered alarms"})
 
 
 def update_record(data):
-    try:
-        alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
-    except ObjectDoesNotExist:
-        return HttpResponse(status=404, content={'error': 'Cannot find alarm'})
+    alarms = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition'])
 
-    try:
-        alarm_record = Record.objects.get(alarm=alarm.id)
-    except (ObjectDoesNotExist, AttributeError):
-        return HttpResponse(status=404, content={'error': 'Cannot find alarm\'s record'})
+    alarm = None
+    if alarms:
+        alarm = alarms.last()
 
-    alarm_record.event = data['event']
-    alarm_record.moment = data['moment']
-    alarm_record.save()
+        try:
+            alarm_record = Record.objects.get(alarm=alarm.id)
+        except (ObjectDoesNotExist, AttributeError):
+            return HttpResponse(status=404, content={'error': 'Cannot find alarm\'s record'})
 
-    return HttpResponse(status=201)
+        alarm_record.event = data['event']
+        alarm_record.moment = data['moment']
+        alarm_record.save()
+
+        return HttpResponse(status=201, content={'ok': 'Register saved!'})
+    return HttpResponse(status=404, content={'error': "There's no registered alarms"})
 
 
 def alert_contact(data):
