@@ -12,6 +12,7 @@ ipython
 gunicorn
 whitenoise
 django-heroku
+ipython
 coreapi==2.3.3
 factory-boy==2.9.2
 flake8==3.5.0
