@@ -40,6 +40,7 @@ class Record(models.Model):
     alarm = models.ForeignKey(Alarm, on_delete=models.CASCADE)
     event = models.CharField(max_length=100)
     moment = models.DateTimeField()
-
+    cup_id = models.CharField(max_length=200, default=0)
+    
     def __str__(self):
         return f"[{self.moment}]: Alarm {self.alarm} {self.event}"

@@ -29,8 +29,8 @@ def register_info(request):
 def get_event_handler(event):
     handlers = {
         'registered': register_alarm,
-        'taken': update_record,
-        'not_taken': alert_contact,
+        'taken': create_record,
+        'not_taken': create_record,
         'cancelled': cancel_alarm
     }
 
@@ -57,7 +57,8 @@ def register_alarm(data):
     alarm_record = Record(
         alarm=alarm,
         event=data['event'],
-        moment=data['moment']
+        moment=data['moment'],
+        cup_id=data['id_cup']
     )
     alarm_record.save()
 
@@ -90,34 +91,32 @@ def update_alarm(data):
         alarm.is_active = True
 
         alarm.save()
-        update_record(data)
+        # update_record(data)
 
         return JsonResponse({'ok': 'Register saved!'}, status=201)
     return JsonResponse({'error': "There's no registered alarms"}, status=404)
 
 
-def update_record(data):
+def create_record(data):
     alarms = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition'])
+    record_new = Record()
 
     alarm = None
     if alarms:
         alarm = alarms.last()
-
+        
         try:
             alarm_record = Record.objects.get(alarm=alarm.id)
         except (ObjectDoesNotExist, AttributeError):
             return JsonResponse({'error': 'Cannot find alarm\'s record'}, status=404)
 
-        alarm_record.event = data['event']
-        alarm_record.moment = data['moment']
-        alarm_record.save()
+        
+        record_new.alarm = alarm_record.alarm
+        record_new.event = data['event']
+        record_new.moment = data['moment']
+        record_new.cup_id = data['id_cup']
+        record_new.save()
 
         return JsonResponse({'ok': 'Register saved!'}, status=201)
     return JsonResponse({'error': "There's no registered alarms"}, status=404)
 
-
-def alert_contact(data):
-    pass
-    #  cup = Cup.objects.get(id=data['id_cup'])
-    #  contact = cup.contact
-    # TODO Send message to contact
