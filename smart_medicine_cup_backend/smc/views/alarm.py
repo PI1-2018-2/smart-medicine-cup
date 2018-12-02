@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -9,17 +9,19 @@ from ..models import User, Cup, Contact, Alarm, Record
 @csrf_exempt
 def register_info(request):
     if request.method != 'POST':
-        return HttpResponse(status=405, content={'error': 'wrong method, use POST'})
+        return JsonResponse({'error': 'wrong method, use POST'}, status=405)
 
     if request.content_type != 'application/json':
-        return HttpResponse(status=415, content={'error': 'wrong content-type, use application/json'})
+        return JsonResponse({'error': 'wrong content-type, use application/json'}, status=415)
 
     try:
         data = json.loads(request.body)
         handler = get_event_handler(data['event'])
         response = handler(data)
-    except KeyError:
-        response = HttpResponse(status=400, content={'error': 'invalid Json'})
+    except KeyError as e:
+        response = JsonResponse({'error': 'invalid Json, problem with key or value: ' + str(e)}, status=400)
+    except json.decoder.JSONDecodeError:
+        response = JsonResponse({'error': 'invalid Json'}, status=400)
 
     return response
 
@@ -37,7 +39,7 @@ def get_event_handler(event):
 
 def register_alarm(data):
     if data['partition'] > 4 or data['partition'] < 1:
-        return HttpResponse(status=400, content={'error': 'wrong partition range'})
+        return JsonResponse({'error': 'wrong partition range'}, status=400)
 
     try:
         alarm = Alarm(
@@ -50,7 +52,7 @@ def register_alarm(data):
         )
         alarm.save()
     except ObjectDoesNotExist:
-        return HttpResponse(status=404, content={'error': 'cannot find cup with given id'})
+        return JsonResponse({'error': 'cannot find cup with this id'}, status=404)
 
     alarm_record = Record(
         alarm=alarm,
@@ -59,7 +61,7 @@ def register_alarm(data):
     )
     alarm_record.save()
 
-    return HttpResponse(status=201, content={'ok': 'Register saved!'})
+    return JsonResponse({'ok': 'Register saved!'}, status=201)
 
 
 def cancel_alarm(data):
@@ -69,9 +71,9 @@ def cancel_alarm(data):
         alarm.is_active = False
         alarm.save()
         update_record(data)
-        return HttpResponse(status=201, content={'ok': 'Register saved!'})
+        return JsonResponse({'ok': 'Register saved!'}, status=201)
 
-    return HttpResponse(status=404, content={'error': 'Cannot find alarm'})
+    return JsonResponse({'error': 'Cannot find alarm'}, status=404)
 
 
 def update_alarm(data):
@@ -90,8 +92,8 @@ def update_alarm(data):
         alarm.save()
         update_record(data)
 
-        return HttpResponse(status=201, content={'ok': 'Register saved!'})
-    return HttpResponse(status=404, content={'error': "There's no registered alarms"})
+        return JsonResponse({'ok': 'Register saved!'}, status=201)
+    return JsonResponse({'error': "There's no registered alarms"}, status=404)
 
 
 def update_record(data):
@@ -104,14 +106,14 @@ def update_record(data):
         try:
             alarm_record = Record.objects.get(alarm=alarm.id)
         except (ObjectDoesNotExist, AttributeError):
-            return HttpResponse(status=404, content={'error': 'Cannot find alarm\'s record'})
+            return JsonResponse({'error': 'Cannot find alarm\'s record'}, status=404)
 
         alarm_record.event = data['event']
         alarm_record.moment = data['moment']
         alarm_record.save()
 
-        return HttpResponse(status=201, content={'ok': 'Register saved!'})
-    return HttpResponse(status=404, content={'error': "There's no registered alarms"})
+        return JsonResponse({'ok': 'Register saved!'}, status=201)
+    return JsonResponse({'error': "There's no registered alarms"}, status=404)
 
 
 def alert_contact(data):
