@@ -18,7 +18,3 @@ coverage.xml
 
 # env file
 .env*
-
-\.vscode/
-
-smart_medicine_cup_backend/cups/migrations/

@@ -30,20 +30,44 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Dia Horário</th>
+                      <th scope="col">Dia</th>
+                      <th scope="col">Horário</th>
+                      <th scope="col">SMC</th>
                       <th scope="col">Situação</th>
-                      <th scope="col">Partição</th>
                     </tr>
                   </thead>
-                  {% for element in list_record %}
                   <tbody>
                     <tr class="table-warning">
-                      <td>{{element.moment}}</td>
-                      <td>{{element.event}}</td>
-                      <td>{{element.partition}}</td>
+                      <td scope="row">Hoje</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Atrasado</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Hoje</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Ontem</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
+                    </tr>
+                    <tr class="table-danger">
+                      <td scope="row">Ontem</td>
+                      <td>06:00</td>
+                      <td>Meu SMC</td>
+                      <td>Não tomou</td>
+                    </tr>
+                    <tr class="table-success">
+                      <td scope="row">Quinta, 16 de Novembro</td>
+                      <td>18:00</td>
+                      <td>Meu SMC</td>
+                      <td>Ok</td>
                     </tr>
                   </tbody>
-                  {% endfor %}
                 </table>
               </div>
             </div>
@@ -58,8 +82,17 @@
               <h5 class="card-subtitle mb-2 text-muted">Alertas</h5>
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  {{request.user.phone}}
-                  
+                  (61) 99999-9999
+                  <span class="badge badge-success badge-pill">Habilitado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 98888-8888
+                  <span class="badge badge-danger badge-pill">Desabilitado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  (61) 99999-9999
+                  <span class="badge badge-success badge-pill">Habilitado</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -74,23 +107,28 @@
                   <tbody>
                     <tr>
                       <th scope="row">Nome completo:</th>
-                      <td>{{request.user.first_name}} {{request.user.last_name}}</td>
+                      <td>Lorem ipsum dolor sit amet</td>
                     </tr>
                     <tr>
                       <th scope="row">E-mail:</th>
-                      <td>{{request.user.email}}</td>
+                      <td>nome@examplo.com</td>
                     </tr>
                     <tr>
                       <th scope="row">SMCs cadastrados:</th>
                       <td></td>
                     </tr>
-                    {% for element in list_record %}
                     <tr>
-                        <th scope="row"></th>
-                        <td>{{element.cup_id}}</td>
-                      </tr>
-                      <tr>
-                    {% endfor %}
+                      <th scope="row"></th>
+                      <td>My SMC</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>My SMC 2</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

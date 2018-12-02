@@ -1,7 +1,3 @@
 from django.contrib import admin
-from .models import Contact, Cup, Record
-# Register your models here.
 
-admin.site.register(Contact)
-admin.site.register(Cup)
-admin.site.register(Record)
+# Register your models here.
