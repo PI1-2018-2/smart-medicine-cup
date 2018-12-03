@@ -1,20 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
-class Contact(models.Model):
-    name = models.CharField(max_length=200)
-    phone = models.CharField(max_length=30)
-    email = models.EmailField(max_length=200)
-
-    def __str__(self):
-        return f"Name: {self.name} Phone: {self.phone}"
-
-
 class Cup(models.Model):
-    user = models.ManyToManyField(User)
-    contact = models.ForeignKey("Contact", on_delete=models.CASCADE)
-
+    cup_id = models.CharField(unique=True, max_length=200, default='0')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    username = models.CharField(max_length=200)
 
 class Alarm(models.Model):
     PARTITION_CHOICES = (
@@ -39,6 +29,7 @@ class Record(models.Model):
     alarm = models.ForeignKey(Alarm, on_delete=models.CASCADE)
     event = models.CharField(max_length=100)
     moment = models.DateTimeField()
-
+    cup_id = models.CharField(max_length=200, default=0)
+    
     def __str__(self):
         return f"[{self.moment}]: Alarm {self.alarm} {self.event}"

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}SMC - Painel - Meus Copos{% endblock %}
+{% block title %}SMC - Painel - Meus SMCs{% endblock %}
 
 {% block navclass %}bg-secondary{% endblock %}
 {% block navlinkclass %}text-white{% endblock %}
@@ -25,24 +25,24 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Meus Copos</h3>
-              <div class="row bg-success m-0 mb-4 pb-1"></div>
-              <h5 class="card-subtitle mb-2 text-muted">Clique em ADICIONAR para cadastrar um novo Copo</h5>
+              <h3 class="card-title">Meus Contatos</h3>
+              <div class="row bg-warning m-0 mb-4 pb-1"></div>
+              <h5 class="card-subtitle mb-2 text-muted">Clique em ADICIONAR para cadastrar um novo contato</h5>
               <div class="table-responsive mt-5">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Copo</th>
-                      <th scope="col">Contato</th>
+                      <th scope="col">#</th>
+                      <th scope="col">Contatos</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for element in list_smc %}
+                  {%for element in list_contacts%}
                     <tr>
-                      <td>{{element.cup_id}}</td>
+                      <td scope="row">{{element.id}}</td>
                       <td>{{element.username}}</td>
                     </tr>
-                  {% endfor %}
+                  {%endfor%}
                   </tbody>
                 </table>
               </div>
@@ -59,24 +59,18 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Adicionar Copo</h4>
+                      <h4 class="modal-title">Adicionar contato</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form class="mt-3" method="post" action="/api/add_smc/">
-                        {% csrf_token %}
-                        <div class="form-group row">
-                          <label for="smcCode" class="col-lg-4 col-form-label">Código do Copo:</label>
-                          <div class="col-lg-8">
-                            <input type="text" class="form-control" id="smcCode" name="smcCode">
-                          </div>
-                        </div>
+                      <form class="mt-3"  method="post" action="/api/add_contact/">
+                      {% csrf_token %}
                         <div class="form-group row mb-5">
-                          <label for="contact" class="col-lg-4 col-form-label">Nome de usuário do Telegram:</label>
+                          <label for="name" class="col-lg-4 col-form-label">Contato:</label>
                           <div class="col-lg-8">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Receba notificações no seu celular">
+                            <input type="text" class="form-control" id="username" name="username">
                           </div>
                         </div>
                         <div class="form-group row text-center">
@@ -107,7 +101,7 @@
   <script type="text/javascript">
     (function($) {
       "use strict"; // Start of use strict
-      $('.dashboardBtn').eq(2).addClass('disabled');
+      $('.dashboardBtn').eq(1).addClass('disabled');
     })(jQuery); // End of use stric
   </script>
 {% endblock %}
