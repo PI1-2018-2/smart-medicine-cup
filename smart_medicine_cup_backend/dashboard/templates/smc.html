@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}SMC - Painel - Meus SMCs{% endblock %}
+{% block title %}SMC - Painel - Meus Copos{% endblock %}
 
 {% block navclass %}bg-secondary{% endblock %}
 {% block navlinkclass %}text-white{% endblock %}
@@ -25,22 +25,24 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Meus SMCs</h3>
+              <h3 class="card-title">Meus Copos</h3>
               <div class="row bg-success m-0 mb-4 pb-1"></div>
-              <h5 class="card-subtitle mb-2 text-muted">Clique em ADICIONAR para cadastrar um novo SMC</h5>
+              <h5 class="card-subtitle mb-2 text-muted">Clique em ADICIONAR para cadastrar um novo Copo</h5>
               <div class="table-responsive mt-5">
                 <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">SMC</th>
+                      <th scope="col">Copo</th>
+                      <th scope="col">Contato</th>
                     </tr>
                   </thead>
                   <tbody>
                   {%for element in list_smc%}
                     <tr>
-                      <td scope="row">{{element.id}}</td>
-                      <td>{{element.cup_id}}</td>
+                      <td scope="row">1</td>
+                      <td>ABC123</td>
+                      <td>FulanoSilva</td>
                     </tr>
                   {%endfor%}
                   </tbody>
@@ -59,18 +61,23 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Adicionar SMC</h4>
+                      <h4 class="modal-title">Adicionar Copo</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form class="mt-3" method="post" action="/api/add_smc/">
-                        {% csrf_token %}
-                        <div class="form-group row mb-5" >
-                          <label for="name" class="col-lg-4 col-form-label">Código SMC:</label>
+                      <form class="mt-3">
+                        <div class="form-group row">
+                          <label for="smcCode" class="col-lg-4 col-form-label">Código do Copo:</label>
                           <div class="col-lg-8">
                             <input type="text" class="form-control" id="smcCode" name="smcCode">
+                          </div>
+                        </div>
+                        <div class="form-group row mb-5">
+                          <label for="contact" class="col-lg-4 col-form-label">Nome de usuário do Telegram:</label>
+                          <div class="col-lg-8">
+                            <input type="text" class="form-control" id="contact" placeholder="Receba notificações no seu celular">
                           </div>
                         </div>
                         <div class="form-group row text-center">

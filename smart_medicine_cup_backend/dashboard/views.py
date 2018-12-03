@@ -39,13 +39,8 @@ class Historic(ListView):
     context_object_name = 'list_historic'
     model = Record
 
-    def get_queryset(self):
-        return self.model.objects.filter(alarm__cup__user=self.request.user)
-
-class Contacts(ListView):
-    template_name = "contacts.html"
-    context_object_name = 'list_contacts'
-    model = Contact
+class Alarms(TemplateView):
+    template_name = "alarms.html"
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
