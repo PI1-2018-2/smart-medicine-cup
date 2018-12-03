@@ -83,39 +83,21 @@ def create_record(data):
         return JsonResponse({'ok': 'Record saved!'}, status=201)
     return JsonResponse({'error': "Cannot find alarm to cup '{id_cup}' and partition '{partition}'".format(**data)}, status=404)
 
-
 @csrf_exempt
 def get_record(request):
-    if request.method == 'POST':
-        return JsonResponse({'error': 'wrong http method, use GET'}, status=405)
-
-    if request.content_type != 'application/json':
-        return JsonResponse({'error': 'wrong content-type, use application/json'}, status=415)
-
-    try:
-        data = json.loads(request.body)
-        handler = get_event_handler(data['event'])
-        response = handler(data)
-    except KeyError as e:
-        response = JsonResponse({'error': 'invalid Json, problem with key or value: ' + str(e)}, status=400)
-    except json.decoder.JSONDecodeError:
-        response = JsonResponse({'error': 'invalid Json'}, status=400)
-
-    return response
-
-
-@csrf_exempt
-def get_record(request):
-    if request.method == 'POST':
+    if request.method != 'GET':
         return JsonResponse({'error': 'wrong http method, use GET'}, status=405)
     
-    data = serializers.serialize('json', Record.objects.all())
-    return HttpResponse(data) 
+    data = Record.objects.all().values()
+    data_list = list(data)
+    return JsonResponse(data_list, safe=False)
+
 
 @csrf_exempt
 def get_contact(request):
-    if request.method == 'POST':
+    if request.method != 'GET':
         return JsonResponse({'error': 'wrong http method, use GET'}, status=405)
 
-    data = serializers.serialize('json', Cup.objects.all())
-    return HttpResponse(data) 
+    data = Cup.objects.all().values()
+    data_list = list(data)
+    return JsonResponse(data_list, safe=False)
