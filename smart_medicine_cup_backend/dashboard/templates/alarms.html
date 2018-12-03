@@ -32,7 +32,6 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
                       <th scope="col">Copo</th>
                       <th scope="col">Compartimento</th>
                       <th scope="col">Hora Inicial</th>
@@ -41,30 +40,15 @@
                     </tr>
                   </thead>
                   <tbody>
+                  {% for element in list_alarm %}
                     <tr>
-                      <td scope="row">1</td>
-                      <td>ABC123</td>
-                      <td>1</td>
-                      <td>08:00</td>
-                      <td>12 em 12</td>
-                      <td>6</td>
+                      <td>{{element.cup.cup_id}}</td>
+                      <td>{{element.partition}}</td>
+                      <td>{{element.start_time}}</td>
+                      <td>{{element.period}}</td>
+                      <td>{{element.duration}}</td>
                     </tr>
-                    <tr>
-                      <td scope="row">2</td>
-                      <td>ABC123</td>
-                      <td>2</td>
-                      <td>14:00</td>
-                      <td>6 em 6</td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">2</td>
-                      <td>ABC123</td>
-                      <td>3</td>
-                      <td>10:00</td>
-                      <td>8 em 8</td>
-                      <td>5</td>
-                    </tr>
+                  {% endfor %}
                   </tbody>
                 </table>
               </div>
