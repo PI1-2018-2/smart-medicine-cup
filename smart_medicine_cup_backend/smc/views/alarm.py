@@ -48,6 +48,7 @@ def register_alarm(data):
                 duration=data['alarm_info']['duration'],
                 is_active=True,
             )
+            create_record(data)
             return JsonResponse({'ok': 'Record saved!'}, status=201)
         except ObjectDoesNotExist:
             cup_id = data['id_cup']
