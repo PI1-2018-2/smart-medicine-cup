@@ -41,14 +41,14 @@ def register_alarm(data):
     if data['partition'] in range(1, 4+1):
         try:
             alarm = Alarm.objects.create(
-                cup=Cup.objects.get(id=data['id_cup']),
+                cup=Cup.objects.get(cup_id=data['id_cup']),
                 partition=data['partition'],
                 start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
                 period=f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00",
                 duration=data['alarm_info']['duration'],
                 is_active=True,
             )
-            return create_record(data)
+            return JsonResponse({'ok': 'Record saved!'}, status=201)
         except ObjectDoesNotExist:
             cup_id = data['id_cup']
             return JsonResponse({'error': f'cannot find cup with id {cup_id}'}, status=404)
@@ -66,8 +66,7 @@ def cancel_alarm(data):
 
 
 def get_alarm(data):
-    alarms = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition'])
-
+    alarms = Alarm.objects.filter(cup__cup_id=data['id_cup'], partition=data['partition'])
     if alarms:
         alarm = alarms.last()
         return alarm
