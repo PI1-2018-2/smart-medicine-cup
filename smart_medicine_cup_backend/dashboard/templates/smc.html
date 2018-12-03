@@ -37,10 +37,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                  {%for element in list_smc%}
                     <tr>
-                      <td scope="row">1</td>
-                      <td>ABC123</td>
+                      <td scope="row">{{element.id}}</td>
+                      <td>{{element.cup_id}}</td>
                     </tr>
+                  {%endfor%}
                   </tbody>
                 </table>
               </div>

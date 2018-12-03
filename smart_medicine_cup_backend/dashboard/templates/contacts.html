@@ -33,14 +33,16 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">SMC</th>
+                      <th scope="col">Contatos</th>
                     </tr>
                   </thead>
                   <tbody>
+                  {%for element in list_contacts%}
                     <tr>
-                      <td scope="row">1</td>
-                      <td>ABC123</td>
+                      <td scope="row">{{element.id}}</td>
+                      <td>{{element.username}}</td>
                     </tr>
+                  {%endfor%}
                   </tbody>
                 </table>
               </div>

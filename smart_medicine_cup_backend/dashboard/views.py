@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+from smc.models import Contact, Cup, Record
 
 # Create your views here.
 class Dashboard(TemplateView):
@@ -11,11 +12,26 @@ class EditRegistration(TemplateView):
 class Login(TemplateView):
     template_name = "login.html"
 
-class Smc(TemplateView):
+class Smc(ListView):
     template_name = "smc.html"
+    context_object_name = 'list_smc'
+    model = Cup
 
-class Historic(TemplateView):
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+class Historic(ListView):
     template_name = "historic.html"
+    context_object_name = 'list_historic'
+    model = Record
 
-class Contacts(TemplateView):
+    def get_queryset(self):
+        return self.model.objects.all()
+
+class Contacts(ListView):
     template_name = "contacts.html"
+    context_object_name = 'list_contacts'
+    model = Contact
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
