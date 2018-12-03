@@ -1,21 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
-class Contact(models.Model):
-    name = models.CharField(max_length=200, default='teste')
-    phone = models.CharField(max_length=30, default='00000000')
-    email = models.EmailField(max_length=200, default='teste@teste.com')
-    username = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-    def __str__(self):
-        return f"Name: {self.name} Phone: {self.phone}"
-
-
 class Cup(models.Model):
     cup_id = models.CharField(max_length=200, default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-
+    username = models.CharField(max_length=200)
 
 class Alarm(models.Model):
     PARTITION_CHOICES = (
