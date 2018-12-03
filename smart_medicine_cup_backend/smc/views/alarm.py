@@ -9,7 +9,7 @@ from ..models import User, Cup, Contact, Alarm, Record
 @csrf_exempt
 def register_info(request):
     if request.method != 'POST':
-        return JsonResponse({'error': 'wrong method, use POST'}, status=405)
+        return JsonResponse({'error': 'wrong http method, use POST'}, status=405)
 
     if request.content_type != 'application/json':
         return JsonResponse({'error': 'wrong content-type, use application/json'}, status=415)
@@ -38,85 +38,36 @@ def get_event_handler(event):
 
 
 def register_alarm(data):
-    if data['partition'] > 4 or data['partition'] < 1:
-        return JsonResponse({'error': 'wrong partition range'}, status=400)
+    if data['partition'] in range(1, 4+1):
+        try:
+            alarm = Alarm(
+                cup=Cup.objects.get(id=data['id_cup']),
+                partition=data['partition'],
+                start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
+                period=f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00",
+                duration=data['alarm_info']['duration'],
+                is_active=True,
+            )
+            alarm.save()
+        except ObjectDoesNotExist:
+            return JsonResponse({'error': 'cannot find cup with this id'}, status=404)
 
-    try:
-        alarm = Alarm(
-            cup=Cup.objects.get(id=data['id_cup']),
-            partition=data['partition'],
-            start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
-            period=f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00",
-            duration=data['alarm_info']['duration'],
-            is_active=True,
-        )
-        alarm.save()
-    except ObjectDoesNotExist:
-        return JsonResponse({'error': 'cannot find cup with this id'}, status=404)
-
-    alarm_record = Record(
-        alarm=alarm,
-        event=data['event'],
-        moment=data['moment'],
-        cup_id=data['id_cup']
-    )
-    alarm_record.save()
-
-    return JsonResponse({'ok': 'Register saved!'}, status=201)
+        return create_record(data)
+    return JsonResponse({'error': 'partition not in valid range [1,4]'}, status=400)
 
 
 def cancel_alarm(data):
-    alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
-
-    if alarm:
-        alarm.is_active = False
-        alarm.save()
-        update_record(data)
-        return JsonResponse({'ok': 'Register saved!'}, status=201)
-
-    return JsonResponse({'error': 'Cannot find alarm'}, status=404)
-
-
-def update_alarm(data):
-    alarm = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition']).last()
-
-    if alarm:
-        start_time = f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00"
-        alarm.start_time = start_time
-
-        period = f"{data['alarm_info']['period']['hour']}:{data['alarm_info']['period']['minute']}:00"
-        alarm.period = period
-
-        alarm.duration = data['alarm_info']['duration']
-        alarm.is_active = True
-
-        alarm.save()
-        # update_record(data)
-
-        return JsonResponse({'ok': 'Register saved!'}, status=201)
-    return JsonResponse({'error': "There's no registered alarms"}, status=404)
-
-
-def create_record(data):
     alarms = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition'])
-    record_new = Record()
 
-    alarm = None
     if alarms:
         alarm = alarms.last()
-        
-        try:
-            alarm_record = Record.objects.get(alarm=alarm.id)
-        except (ObjectDoesNotExist, AttributeError):
-            return JsonResponse({'error': 'Cannot find alarm\'s record'}, status=404)
+        alarm.is_active = False
+        alarm.save()
 
-        
-        record_new.alarm = alarm_record.alarm
-        record_new.event = data['event']
-        record_new.moment = data['moment']
-        record_new.cup_id = data['id_cup']
-        record_new.save()
+        return create_record(data)
+    return JsonResponse({'error': "Cannot find alarm to cup '{id_cup}' and partition '{partition}'".format(**data)}, status=404)
 
-        return JsonResponse({'ok': 'Register saved!'}, status=201)
-    return JsonResponse({'error': "There's no registered alarms"}, status=404)
 
+def create_record(data, alarm):
+    Record.objects.create(alarm=alarm, cup_id=data['id_cup'], event=data['event'], moment=data['moment'])
+    return JsonResponse({'ok': 'Record saved!'}, status=201)
