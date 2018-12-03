@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Cup(models.Model):
-    cup_id = models.CharField(max_length=200, default=0)
+    cup_id = models.CharField(unique=True, max_length=200, default='0')
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     username = models.CharField(max_length=200)
 
