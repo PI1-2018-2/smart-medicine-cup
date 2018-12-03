@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Cup, Alarm, Record
 
-# Register your models here.
+admin.site.register(Cup)
+admin.site.register(Alarm)
+admin.site.register(Record)
