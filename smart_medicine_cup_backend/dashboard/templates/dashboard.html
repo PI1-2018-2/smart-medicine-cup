@@ -30,43 +30,19 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Dia</th>
-                      <th scope="col">Horário</th>
+                      <th scope="col">Dia Horário</th>
                       <th scope="col">SMC</th>
                       <th scope="col">Situação</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="table-warning">
-                      <td scope="row">Hoje</td>
-                      <td>18:00</td>
-                      <td>Meu SMC</td>
-                      <td>Atrasado</td>
+                  {%for element in list_historic%}
+                    <tr>
+                      <td>{{element.moment}}</td>
+                      <td>{{element.cup_id}}</td>
+                      <td>{{element.event}}</td>
                     </tr>
-                    <tr class="table-success">
-                      <td scope="row">Hoje</td>
-                      <td>06:00</td>
-                      <td>Meu SMC</td>
-                      <td>Ok</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td scope="row">Ontem</td>
-                      <td>18:00</td>
-                      <td>Meu SMC</td>
-                      <td>Ok</td>
-                    </tr>
-                    <tr class="table-danger">
-                      <td scope="row">Ontem</td>
-                      <td>06:00</td>
-                      <td>Meu SMC</td>
-                      <td>Não tomou</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td scope="row">Quinta, 16 de Novembro</td>
-                      <td>18:00</td>
-                      <td>Meu SMC</td>
-                      <td>Ok</td>
-                    </tr>
+                  {%endfor%}
                   </tbody>
                 </table>
               </div>
@@ -81,7 +57,7 @@
               <h3 class="card-title">Contatos</h3>
               <h5 class="card-subtitle mb-2 text-muted">Alertas</h5>
               <ul class="list-group">
-                {%for element in list_contacts%}
+                  {%for element in list_contacts%}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                       <td>{{element.username}}</td>
                       <span class="badge badge-success badge-pill">Habilitado</span>
@@ -111,18 +87,11 @@
                       <th scope="row">SMCs cadastrados:</th>
                       <td></td>
                     </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td>My SMC</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td>My SMC 1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td>My SMC 2</td>
-                    </tr>
+                    {%for element in list_smc%}
+                      <tr>
+                        <td scope="row">{{element.cup_id}}</td>
+                        </tr>
+                    {%endfor%}
                   </tbody>
                 </table>
               </div>
