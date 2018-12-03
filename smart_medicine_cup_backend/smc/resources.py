@@ -1,13 +1,12 @@
 from tastypie.resources import ModelResource
-from smc.models import Record, Contact, Cup
+from smc.models import Record, Cup
 
 class RecordResource(ModelResource):
     class Meta:
         queryset = Record.objects.all()
         resource_name = 'record'
 
-
-class ContactResource(ModelResource):
+class CupResource(ModelResource):
     class Meta:
-        queryset = Contact.objects.select_related('user')
-        resource_name = 'contact'
+        queryset = Cup.objects.all()
+        resource_name = 'cup'

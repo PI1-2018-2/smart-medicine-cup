@@ -10,5 +10,4 @@ urlpatterns = [
     url(r'^login/$', views.user.user_login, name='login'),
     url(r'^logout/$', views.user.user_logout, name='logout'),
     url(r'^add_smc/$', views.dashboard.add_smc, name='add_smc'),
-    url(r'^add_contact/$', views.dashboard.add_contact, name='add_contact'),
 ]
