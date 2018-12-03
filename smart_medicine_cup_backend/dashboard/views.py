@@ -3,9 +3,15 @@ from django.views.generic import TemplateView, ListView, View
 from smc.models import Cup, Record, Alarm
 
 # Create your views here.
-class Dashboard(TemplateView):
+class Dashboard(View):
     template_name = "dashboard.html"
-                                                    
+
+    def get(self, request):
+        list_smc = Cup.objects.filter(user=self.request.user)
+        list_historic = Record.objects.filter(alarm__cup__user=self.request.user)
+        return render(request, self.template_name, {'list_smc': list_smc,
+                                                    'list_historic': list_historic})
+
 class EditRegistration(TemplateView):
     template_name = "edit_registration.html"
 
