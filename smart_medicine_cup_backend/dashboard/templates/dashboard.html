@@ -78,21 +78,15 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Telefones</h3>
+              <h3 class="card-title">Contatos</h3>
               <h5 class="card-subtitle mb-2 text-muted">Alertas</h5>
               <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  (61) 99999-9999
-                  <span class="badge badge-success badge-pill">Habilitado</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  (61) 98888-8888
-                  <span class="badge badge-danger badge-pill">Desabilitado</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  (61) 99999-9999
-                  <span class="badge badge-success badge-pill">Habilitado</span>
-                </li>
+                {%for element in list_contacts%}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <td>{{element.username}}</td>
+                      <span class="badge badge-success badge-pill">Habilitado</span>
+                    </li>
+                  {%endfor%}
               </ul>
             </div>
           </div>
