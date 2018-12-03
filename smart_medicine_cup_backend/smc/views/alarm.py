@@ -40,7 +40,7 @@ def get_event_handler(event):
 def register_alarm(data):
     if data['partition'] in range(1, 4+1):
         try:
-            alarm = Alarm(
+            alarm = Alarm.objects.create(
                 cup=Cup.objects.get(id=data['id_cup']),
                 partition=data['partition'],
                 start_time=f"{data['alarm_info']['start']['hour']}:{data['alarm_info']['start']['minute']}:00",
@@ -48,26 +48,35 @@ def register_alarm(data):
                 duration=data['alarm_info']['duration'],
                 is_active=True,
             )
-            alarm.save()
+            return create_record(data)
         except ObjectDoesNotExist:
-            return JsonResponse({'error': 'cannot find cup with this id'}, status=404)
+            cup_id = data['id_cup']
+            return JsonResponse({'error': f'cannot find cup with id {cup_id}'}, status=404)
 
-        return create_record(data)
     return JsonResponse({'error': 'partition not in valid range [1,4]'}, status=400)
 
 
 def cancel_alarm(data):
+    response = create_record(data)
+    if response.status_code == 201: # So alarm exists
+        alarm = get_alarm(data)
+        alarm.is_active = False
+        alarm.save()
+    return response
+
+
+def get_alarm(data):
     alarms = Alarm.objects.filter(cup=data['id_cup'], partition=data['partition'])
 
     if alarms:
         alarm = alarms.last()
-        alarm.is_active = False
-        alarm.save()
+        return alarm
+    return None
 
-        return create_record(data)
+
+def create_record(data):
+    alarm = get_alarm(data)
+    if alarm:
+        Record.objects.create(alarm=alarm, cup_id=data['id_cup'], event=data['event'], moment=data['moment'])
+        return JsonResponse({'ok': 'Record saved!'}, status=201)
     return JsonResponse({'error': "Cannot find alarm to cup '{id_cup}' and partition '{partition}'".format(**data)}, status=404)
-
-
-def create_record(data, alarm):
-    Record.objects.create(alarm=alarm, cup_id=data['id_cup'], event=data['event'], moment=data['moment'])
-    return JsonResponse({'ok': 'Record saved!'}, status=201)
