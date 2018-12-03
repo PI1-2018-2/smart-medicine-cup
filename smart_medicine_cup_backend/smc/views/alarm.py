@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 
-from ..models import User, Cup, Contact, Alarm, Record
+from ..models import User, Cup, Alarm, Record
 
 
 @csrf_exempt
